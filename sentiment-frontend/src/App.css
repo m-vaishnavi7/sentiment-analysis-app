@@ -39,7 +39,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
-  font-size: 35px;
+  font-size: clamp(20px, 6vw, 35px);
   font-weight: bold;
 }
 
@@ -56,7 +56,6 @@ body {
   padding: 0 12px;
 }
 
-
 /* =================== Masthead =================== */
 .masthead {
   width: 100%;
@@ -68,13 +67,13 @@ body {
 }
 
 .masthead-content h2 {
-  font-size: 36px;
+  font-size: clamp(20px, 6vw, 35px);
   margin-bottom: 5px;
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 .masthead-content p {
-  font-size: 18px;
+  font-size: clamp(14px, 4vw, 18px);
   margin: 0;
 }
 
@@ -104,6 +103,53 @@ body {
   }
 }
 
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+  }
+
+  .logout-button {
+    position: static;
+    margin-top: 10px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .masthead-content h2 {
+    font-size: 28px;
+  }
+
+  .masthead-content p {
+    font-size: 14px;
+  }
+
+  .date-picker-container {
+    flex-direction: column;
+  }
+
+  .card-button, .clear-button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .text-input {
+    font-size: 14px;
+  }
+
+  .card-container {
+    padding: 10px;
+  }
+}
+
 /* =================== Cards =================== */
 .card {
   width: 100%;
@@ -115,7 +161,7 @@ body {
 }
 
 .card-title {
-  font-size: 20px;
+  font-size: clamp(18px, 4vw, 22px);
   font-weight: 600;
   margin-bottom: 16px;
   text-align: center;
@@ -158,6 +204,7 @@ body {
 .date-picker-container {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 /* =================== Alerts =================== */
@@ -192,7 +239,7 @@ body {
 }
 
 .pie-chart-container {
-  max-width: 350px; /* 👈 Shrink to desired size */
+  max-width: 350px;
   margin: 0 auto;
 }
 
@@ -203,7 +250,6 @@ body {
   padding-right: 10px;
 }
 
-/* Smooth scroll & cleaner scrollbar */
 .history-scroll::-webkit-scrollbar {
   width: 6px;
 }
@@ -230,15 +276,7 @@ body {
   margin: 4px 0;
 }
 
-.timestamp {
-  font-size: 12px;
-  color: #888;
-}
-
-
-
 /* =================== Card Container for Login/Register =================== */
-/* Login/Register wrapper */
 .card-container {
   display: flex;
   justify-content: center;
@@ -247,7 +285,6 @@ body {
   padding: 20px;
 }
 
-/* Login/Register card */
 .card.auth-card {
   width: 100%;
   max-width: 400px;
@@ -257,7 +294,6 @@ body {
   padding: 30px;
   text-align: center;
 }
-
 
 .card-footer {
   margin-top: 20px;
@@ -273,4 +309,18 @@ body {
 
 .card-footer a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 18px;
+  }
+
+  .masthead-content h2 {
+    font-size: 18px;
+  }
+
+  .masthead-content p {
+    font-size: 16px;
+  }
 }
