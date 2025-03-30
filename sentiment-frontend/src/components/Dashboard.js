@@ -110,14 +110,18 @@ function Dashboard({ token, username, onLogout }) {
   }, [history, selectedStartDate, selectedEndDate]);
 
   const pieChartData = useMemo(() => {
-    let positive = 0, negative = 0;
+    let positive = 0, negative = 0, neutral = 0;
     history.forEach(({ sentiment }) => {
       if (sentiment === 'Positive') positive++;
       else if (sentiment === 'Negative') negative++;
+      else if (sentiment === 'Neutral') neutral++;
     });
     return {
-      labels: ['Positive', 'Negative'],
-      datasets: [{ data: [positive, negative], backgroundColor: ['#4caf50', '#f44336'] }]
+      labels: ['Positive', 'Negative', 'Neutral'],
+      datasets: [{
+        data: [positive, negative, neutral],
+        backgroundColor: ['#4caf50', '#f44336', '#9e9e9e']
+      }]
     };
   }, [history]);
 
@@ -190,15 +194,16 @@ function Dashboard({ token, username, onLogout }) {
                 />
 
                 <DatePicker
-                label="End Date"
-                value={selectedEndDate}
-                onChange={(val) => setSelectedEndDate(val)}
-                slotProps={{
+                  label="End Date"
+                  value={selectedEndDate}
+                  onChange={(val) => setSelectedEndDate(val)}
+                  minDate={selectedStartDate}
+                  slotProps={{
                     textField: {
-                    variant: 'outlined',
-                    className: 'text-input',
+                      variant: 'outlined',
+                      className: 'text-input',
                     },
-                }}
+                  }}
                 />
 
               </div>
