@@ -44,7 +44,40 @@ npm install
 npm start
 ```
 
-### 3. Frontend Setup (React)
+### 3. Database Setup (PostgreSQL)
+
+This application uses **PostgreSQL** to store user credentials and sentiment analysis history.
+
+#### Schema Initialization
+On server startup, the backend automatically initializes the following tables (if they don’t exist):
+
+```sql
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+-- Sentiment Analyses table
+CREATE TABLE IF NOT EXISTS analyses (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  text TEXT NOT NULL,
+  sentiment TEXT NOT NULL,
+  confidence NUMERIC NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+#### Connecting to PostgreSQL
+
+The connection uses `DATABASE_URL` from your `.env` file. Example:
+```
+DATABASE_URL=postgresql://<username>:<password>@<host>:<port>/<dbname>
+```
+
+### 4. Frontend Setup (React)
 ```bash
 cd sentiment-frontend
 npm install
